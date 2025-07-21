@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bazino Escape Room</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background-color: #0a0a0a; color: #ffffff; }
+
+    /* === HEADER === */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #1a1a1a;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .sticker {
+      width: 40px;
+      height: 40px;
+      background: #d24102;
+      border-radius: 50%;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #d24102;
+    }
+
+    /* === HERO SECTION === */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero-section video {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding-top: 35vh;
+      font-family: 'Georgia', serif;
+    }
+
+    .hero-text h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      text-shadow: 0 0 10px #000;
+      color: #ffffff;
+    }
+
+    .hero-text p {
+      font-size: 2rem;
+      margin: 1rem 0;
+      text-shadow: 0 0 10px #000;
+      color: #ffffff;
+    }
+
+    .hero-text .hero-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .hero-text .hero-links a {
+      background: #d24102;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .hero-text .hero-links a:hover {
+      background: #ffffff;
+      color: #0a0a0a;
+    }
+
+    /* === CHOOSE YOUR ADVENTURE === */
+    .games-section {
+      background: #0a0a0a;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    .games-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+
+    .games-section .section-description {
+      font-size: 1.2rem;
+      color: #cccccc;
+      margin-bottom: 2rem;
+    }
+
+    .game-gallery {
+      display: flex;
+      gap: 1rem;
+      padding-bottom: 2rem;
+      animation: scroll 20s linear infinite;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .game-card {
+      flex: 0 0 300px;
+      background: #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 500px;
+    }
+
+    .game-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .game-card h3 {
+      margin: 1rem;
+      font-size: 1.2rem;
+      color: #ffffff;
+    }
+
+    .game-card p {
+      margin: 0 1rem 1rem;
+      font-size: 0.9rem;
+      color: #cccccc;
+    }
+
+    .game-card a {
+      display: inline-block;
+      margin: 0 1rem 1.5rem;
+      color: #d24102;
+      text-decoration: underline;
+    }
+
+    /* === FEATURED GAMES === */
+    .featured-games {
+      background: #1a1a1a;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    .featured-games h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #ffffff;
+    }
+
+    .featured-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .featured-card {
+      position: relative;
+      width: 90%;
+      max-width: 1200px;
+      height: 200px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .featured-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.5);
+    }
+
+    .featured-card .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #ffffff;
+      text-shadow: 0 0 10px #000;
+    }
+
+    .featured-card h3 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .featured-card p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: #cccccc;
+    }
+
+    .featured-card a {
+      color: #d24102;
+      text-decoration: underline;
+    }
+
+    /* === RESERVATION FORM === */
+    .reservation-section {
+      background: #0a0a0a;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    .reservation-section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #ffffff;
+    }
+
+    .reservation-form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .reservation-form input,
+    .reservation-form select,
+    .reservation-form textarea {
+      padding: 0.8rem;
+      border: none;
+      border-radius: 5px;
+      background: #1a1a1a;
+      color: #ffffff;
+    }
+
+    .reservation-form button {
+      padding: 0.8rem;
+      background: #d24102;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .reservation-form button:hover {
+      background: #ffffff;
+      color: #0a0a0a;
+    }
+
+    /* === CONTACT === */
+    .contact-section {
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 3rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-left {
+      flex: 1;
+      min-width: 300px;
+      text-align: left;
+      font-family: 'Times New Roman', serif;
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .contact-left .links {
+      border-left: 1px solid #d24102;
+      padding-left: 2rem;
+    }
+
+    .contact-left .links ul {
+      list-style: none;
+      font-size: 1.2rem;
+    }
+
+    .contact-left .links ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-left .links ul li a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .contact-left .links ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-left .info .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .contact-left .info p {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: #cccccc;
+    }
+
+    .contact-right {
+      flex: 1;
+      min-width: 300px;
+ muros
+      text-align: right;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      justify-items: center;
+    }
+
+    .social-grid a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .social-grid a:hover {
+      transform: scale(1.2);
+    }
+
+    .social-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* === FOOTER === */
+    .footer {
+      background: #0a0a0a;
+      padding: 1rem;
+      text-align: center;
+      color: #cccccc;
+      font-size: 0.9rem;
+    }
+
+    /* === SCROLL BAR === */
+    ::-webkit-scrollbar {
+      height: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #d24102;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#games">Our Games</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="logo-container">
+      <div class="logo">Bazino</div>
+      <div class="sticker"></div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <div class="hero-section">
+    <video autoplay muted loop playsinline src="https://s27602.pcdn.co/wp-content/uploads/2024/08/EH_BASINGSTOKE_ETC_25.mp4"></video>
+    <div class="hero-text">
+      <h1>Bazino: The Ultimate Puzzle Adventure</h1>
+      <p>در بازینو، دنیایی از سرگرمی‌های گروهی و بازی‌های فکری منتظر شماست</p>
+      <div class="hero-links">
+        <a href="#games">Our Games</a>
+        <a href="#contact">Contact Us</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHOOSE YOUR ADVENTURE SECTION -->
+  <section class="games-section" id="games">
+    <h2>Choose Your Adventure</h2>
+    <p class="section-description">Select from our thrilling collection of escape rooms and mind-bending challenges!</p>
+    <div class="game-gallery">
+      <div class="game-card">
+        <img src="https://b1803394.smushcdn.com/1803394/wp-content/uploads/2024/10/gwl-dixit-header.jpg?lossy=1&strip=1&webp=1" alt="Game 1">
+        <h3>Dixit</h3>
+        <p>بازی خیال‌پردازی و تصویرسازی. هر بازیکن باید داستانی برای کارت تصویری‌اش بسازد تا بقیه بتوانند آن را پیدا کنند</p>
+        <a href="#reservation">Reserve Now</a>
+      </div>
+      <div class="game-card">
+        <img src="https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch/70010000034088/ac97854c142c719f8ae843106d43511db61822eb9bdb78e2c1a98ea0ae3b6c08" alt="Game 2">
+        <h3>Uno</h3>
+        <p>بازی کلاسیک کارت با قوانین ساده اما رقابتی. هدف خلاص‌شدن از کارت‌هاست، اما حواست به کارت‌های ویژه باشه</p>
+        <a href="#reservation">Reserve Now</a>
+      </div>
+      <div class="game-card">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/88/2a/a4/caption.jpg?w=1400&h=800&s=1" alt="Game 3">
+        <h3>Monopoly</h3>
+        <p>بازی سرمایه‌گذاری، خرید و فروش ملک. با مدیریت پول و استراتژی رقیبانت رو ورشکست کن</p>
+        <a href="#reservation">Reserve Now</a>
+      </div>
+      <div class="game-card">
+        <img src="https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch/70010000068417/f75365bce6cbfbf0e1678f1ce87fe8631234b505149e22a93464120bd8f9b98a" alt="Game 4">
+        <h3>Risk</h3>
+        <p>بازی استراتژیک مدیریت منابع. باید زمین، گندم، آجر و... جمع کنی و دهکده‌هات رو بسازی</p>
+        <a href="#reservation">Reserve Now</a>
+      </div>
+      <div class="game-card">
+        <img src="https://playtracker.net/cdn-cgi/image/format=auto/https://playtracker-apollo.fra1.cdn.digitaloceanspaces.com/covers/api/game_cover_56373.jpg" alt="Game 5">
+        <h3>Catan</h3>
+        <p>بازی استراتژیک جهانی برای تسخیر دنیا</p>
+        <a href="#reservation">Reserve Now</a>
+      </div>
+      <div class="game-card">
+        <img src="https://static.lelekan.ua/image/cache/catalog/igri/jungle-speed/jungle-speed-lelekan-box-800x800.png" alt="Game 6">
+        <h3>Jungle Speed</h3>
+        <p>بازی سرعت و دقت با کارت‌های رنگارنگ. وقتی دو کارت شبیه دیدی، سریع توتم رو بگیر</p>
+        <a href="#reservation">Reserve Now</a>
+      </div>
+      <div class="game-card">
+        <img src="https://www.boardgamesindia.com/image/cache/catalog/product/pic38668-1500x1500w.jpg.webp" alt="Game 7">
+        <h3>Ticket to Ride</h3>
+        <p>در این بازی، با ساخت مسیرهای راه‌آهن بین شهرها رقابت می‌کنی تا بیشترین امتیاز را بگیری</p>
+        <a href="#reservation">Reserve Now</a>
+      </div>
+      <div class="game-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRllGsvT2lJ7Nz0hzLlUBO42eOZk5YnmN32kw&s" alt="Game 8">
+        <h3>Exploding kittens</h3>
+        <p>بازی کارتی با طنز خاص و اتفاقات غیرمنتظره. تلاش کن کارت گربه انفجاری نکشی</p>
+        <a href="#reservation">Reserve Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED GAMES SECTION -->
+  <section class="featured-games">
+    <h2>Our services</h2>
+    <div class="featured-gallery">
+      <div class="featured-card">
+        <img src="https://resizer.otstatic.com/v3/photos/76600491-2?width=1280&height=720&webp=true" alt="Game 1">
+        <div class="content">
+          <h3>Coffee & Lounge Services</h3>
+          <p>در کافه‌ی دنج و آرام ما، تجربه‌ای متفاوت از طعم واقعی قهوه و نوشیدنی‌های خاص را خواهید داشت.</p>
+          <a href="https://bazino.app">See The Menu</a>
+        </div>
+      </div>
+      <div class="featured-card">
+        <img src="https://i.guim.co.uk/img/media/8e4746cb09c0ab8424fbe25eea171291c9219a7b/0_601_3472_2083/master/3472.jpg?width=980&dpr=2&s=none&crop=none" alt="Game 2">
+        <div class="content">
+          <h3>Mafia Game Room</h3>
+          <p>اتاق بازی مافیا، جایی برای هیجان، استراتژی و رقابت‌های دوستانه</p>
+          <a href="#reservation">Reserve Now</a>
+        </div>
+      </div>
+      <div class="featured-card">
+        <img src="https://www.heartsdesireevents.com/assets/images/services/Corporate-Event-Planner.jpeg" alt="Game 3">
+        <div class="content">
+          <h3>our Events</h3>
+          <p>ما در کنار شما هستیم تا ایونت‌هایی خاص، به‌یادماندنی و منحصربه‌فرد رقم بزنید.</p>
+          <a href="#reservation">Coming Soon</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESERVATION SECTION -->
+  <section class="reservation-section" id="reservation">
+    <h2>Book Your Adventure</h2>
+    <form class="reservation-form">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email" required>
+      <select required>
+        <option value="" disabled selected>Select Game</option>
+        <option value="mystery">Mystery Mansion</option>
+        <option value="haunted">Haunted Lab</option>
+        <option value="alien">Alien Invasion</option>
+      </select>
+      <input type="date" required>
+      <textarea placeholder="Additional Notes" rows="4"></textarea>
+      <button type="submit">Reserve Now</button>
+    </form>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact-section" id="contact">
+    <div class="contact-left">
+      <div class="links">
+        <ul>
+          <li><a href="#games">Our Games</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#reservation">Book Now</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#events">Events</a></li>
+        </ul>
+      </div>
+      <div class="info">
+        <div class="logo">Bazino</div>
+        <p>Phone: 09128024966</p>
+        <p>Email: mani.nani.13.83@gmail.com</p>
+        <p>Address: Tehran, Iran</p>
+        <p>Location: Bazino Escape Room</p>
+        <p>Fax: +98 21 12345678</p>
+        <p>Manager: Ali Alaee</p>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="social-grid">
+   <a href="https://instagram.com" target="_blank">
+  <img src="https://cdn.simpleicons.org/instagram/000000/40" alt="Instagram" />
+</a>
+
+<a href="https://facebook.com" target="_blank">
+  <img src="https://cdn.simpleicons.org/facebook/000000/40" alt="Facebook" />
+</a>
+
+<a href="https://tiktok.com" target="_blank">
+  <img src="https://cdn.simpleicons.org/tiktok/000000/40" alt="TikTok" />
+</a>
+<a href="https://youtube.com" target="_blank">
+  <img src="https://cdn.simpleicons.org/youtube/000000/40" alt="YouTube" />
+</a>
+<a href="https://t.me/yourusername" target="_blank">
+  <img src="https://cdn.simpleicons.org/telegram/000000/40" alt="Telegram" />
+</a>
+<a href="https://wa.me/yourphonenumber" target="_blank">
+  <img src="https://cdn.simpleicons.org/whatsapp/000000/40" alt="WhatsApp" />
+</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>Created by Mani Alimohammadi</p>
+  </footer>
+</body>
+</html>
