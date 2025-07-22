@@ -140,21 +140,24 @@
       margin-bottom: 2rem;
     }
 
+.games-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
 .game-gallery {
   display: flex;
   gap: 1rem;
-  padding-bottom: 2rem;
-  animation: scroll 20s linear infinite;
-  overflow-x: hidden;
-  white-space: nowrap;
-  scroll-behavior: auto;
+  animation: scroll 30s linear infinite;
+  width: max-content;
 }
 
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
 
     .game-card {
       flex: 0 0 300px;
@@ -494,6 +497,54 @@
     <p class="section-description">Select from our thrilling collection of escape rooms and mind-bending challenges!</p>
     <div class="game-gallery">
       <div class="game-card">
+        <img src="https://b1803394.smushcdn.com/1803394/wp-content/uploads/2024/10/gwl-dixit-header.jpg?lossy=1&strip=1&webp=1" alt="Game 1">
+        <h3>Dixit</h3>
+        <p>بازی خیال‌پردازی و تصویرسازی. هر بازیکن باید داستانی برای کارت تصویری‌اش بسازد تا بقیه بتوانند آن را پیدا کنند</p>
+        <a href="#reservation">Reserve Now</a>
+      </div>
+      <div class="game-card">
+        <img src="https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch/70010000034088/ac97854c142c719f8ae843106d43511db61822eb9bdb78e2c1a98ea0ae3b6c08" alt="Game 2">
+        <h3>Uno</h3>
+        <p>بازی کلاسیک کارت با قوانین ساده اما رقابتی. هدف خلاص‌شدن از کارت‌هاست، اما حواست به کارت‌های ویژه باشه</p>
+        <a href="#reservation">Reserve Now</a>
+      </div>
+      <div class="game-card">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/88/2a/a4/caption.jpg?w=1400&h=800&s=1" alt="Game 3">
+        <h3>Monopoly</h3>
+        <p>بازی سرمایه‌گذاری، خرید و فروش ملک. با مدیریت پول و استراتژی رقیبانت رو uncanny کن</p>
+        <a href="#reservation">Reserve Now</a>
+      </div>
+      <div class="game-card">
+        <img src="https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch/70010000068417/f75365bce6cbfbf0e1678f1ce87fe8631234b505149e22a93464120bd8f9b98a" alt="Game 4">
+        <h3>Risk</h3>
+        <p>بازی استراتژیک مدیریت منابع. باید زمین، گندم، آجر و... جمع کنی و دهکده‌هات رو بسازی</p>
+        <a href="#reservation">Reserve Now</a>
+      </div>
+      <div class="game-card">
+        <img src="https://playtracker.net/cdn-cgi/image/format=auto/https://playtracker-apollo.fra1.cdn.digitaloceanspaces.com/covers/api/game_cover_56373.jpg" alt="Game 5">
+        <h3>Catan</h3>
+        <p>بازی استراتژیک جهانی برای تسخیر دنیا</p>
+        <a href="#reservation">Reserve Now</a>
+      </div>
+      <div class="game-card">
+        <img src="https://static.lelekan.ua/image/cache/catalog/igri/jungle-speed/jungle-speed-lelekan-box-800x800.png" alt="Game 6">
+        <h3>Jungle Speed</h3>
+        <p>بازی سرعت و دقت با کارت‌های رنگارنگ. وقتی دو کارت شبیه دیدی، سریع توتم رو بگیر</p>
+        <a href="#reservation">Reserve Now</a>
+      </div>
+      <div class="game-card">
+        <img src="https://www.boardgamesindia.com/image/cache/catalog/product/pic38668-1500x1500w.jpg.webp" alt="Game 7">
+        <h3>Ticket to Ride</h3>
+        <p>در این بازی، با ساخت مسیرهای راه‌آهن بین شهرها رقابت می‌کنی تا بیشترین امتیاز را بگیری</p>
+        <a href="#reservation">Reserve Now</a>
+      </div>
+      <div class="game-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRllGsvT2lJ7Nz0hzLlUBO42eOZk5YnmN32kw&s" alt="Game 8">
+        <h3>Exploding kittens</h3>
+        <p>بازی کارتی با طنز خاص و اتفاقات غیرمنتظره. تلاش کن کارت گربه انفجاری نکشی</p>
+        <a href="#reservation">Reserve Now</a>
+      </div>
+       <div class="game-card">
         <img src="https://b1803394.smushcdn.com/1803394/wp-content/uploads/2024/10/gwl-dixit-header.jpg?lossy=1&strip=1&webp=1" alt="Game 1">
         <h3>Dixit</h3>
         <p>بازی خیال‌پردازی و تصویرسازی. هر بازیکن باید داستانی برای کارت تصویری‌اش بسازد تا بقیه بتوانند آن را پیدا کنند</p>
