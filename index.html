@@ -140,12 +140,16 @@
       margin-bottom: 2rem;
     }
 
-    .game-gallery {
-      display: flex;
-      gap: 1rem;
-      padding-bottom: 2rem;
-      animation: scroll 20s linear infinite;
-    }
+.game-gallery {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 2rem;
+  animation: scroll 20s linear infinite;
+  overflow-x: hidden;
+  white-space: nowrap;
+  scroll-behavior: auto;
+}
+
 
     @keyframes scroll {
       0% { transform: translateX(0); }
