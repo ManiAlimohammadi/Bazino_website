@@ -149,17 +149,21 @@
       position: relative;
     }
 
-    .game-gallery {
-      display: inline-flex;
-      gap: 0.5rem;
-      height: 300px;
-      animation: slide 20s linear infinite;
-    }
+   .game-gallery {
+  display: inline-flex;
+  gap: 0.5rem;
+  height: 300px;
+  animation: slide var(--scroll-speed, 20s) linear infinite;
+}
 
-    @keyframes slide {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+@keyframes slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+    .game-gallery.paused {
+  animation-play-state: paused;
+}
+
 
     .game-card {
       flex: 0 0 200px;
@@ -704,5 +708,45 @@
   <footer class="footer">
     <p>Created by Mani Alimohammadi</p>
   </footer>
+  <script>
+  const gallery = document.querySelector('.game-gallery');
+
+  let touchActive = false;
+
+  function slowScroll() {
+    gallery.style.setProperty('--scroll-speed', '40s'); // slower speed
+  }
+
+  function normalScroll() {
+    gallery.style.setProperty('--scroll-speed', '20s'); // original speed
+  }
+
+  // For touch devices
+  gallery.addEventListener('touchstart', () => {
+    touchActive = true;
+    gallery.classList.add('paused');
+  });
+
+  gallery.addEventListener('touchend', () => {
+    touchActive = false;
+    gallery.classList.remove('paused');
+    slowScroll();
+    setTimeout(normalScroll, 5000); // After 5s return to normal speed
+  });
+
+  // Optional: Support for mouse hover as well
+  gallery.addEventListener('mouseenter', () => {
+    if (!touchActive) gallery.classList.add('paused');
+  });
+
+  gallery.addEventListener('mouseleave', () => {
+    if (!touchActive) {
+      gallery.classList.remove('paused');
+      slowScroll();
+      setTimeout(normalScroll, 5000);
+    }
+  });
+</script>
+
 </body>
 </html>
