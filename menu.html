@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fa">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>منوی کافه</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow-x: hidden;
+        font-family: Tahoma, sans-serif;
+        position: relative;
+        color: #eee;
+        direction: rtl;
+      }
+
+      #starCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100vw;
+        height: 100vh;
+        background: black;
+      }
+
+      .card {
+        border: 4px solid #d94c00;
+        border-radius: 15px;
+        box-shadow: inset 0 0 15px #ff6f00, 0 10px 20px rgba(217, 76, 0, 0.7);
+        padding: 25px 20px;
+        text-align: center;
+        position: relative;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+      .card:hover {
+        transform: scale(1.07) rotate(-3deg);
+        box-shadow: inset 0 0 25px #ff6f00, 0 15px 30px rgba(255, 111, 0, 0.9);
+      }
+
+      .card::before,
+      .card::after {
+        content: "";
+        position: absolute;
+        border: 2px solid #d94c00;
+        width: 25px;
+        height: 25px;
+      }
+      .card::before {
+        top: 10px;
+        left: 10px;
+        border-right: none;
+        border-bottom: none;
+        border-radius: 5px 0 0 0;
+      }
+      .card::after {
+        bottom: 10px;
+        right: 10px;
+        border-left: none;
+        border-top: none;
+        border-radius: 0 0 5px 0;
+      }
+
+      body {
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        font-family: "Luckiest Guy", cursive;
+        font-size: 2.5rem;
+        color: #ff6f00;
+        margin-bottom: 40px;
+      }
+
+      .menu-container {
+        width: 100%;
+        max-width: 800px;
+      }
+
+      .category-title {
+        font-family: "Luckiest Guy", cursive;
+        font-size: 1.6rem;
+        text-align: center;
+        color: #ff6f00;
+        margin: 0 auto;
+      }
+
+      .submenu {
+        border: 1px solid #444;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 10px 0 25px 0;
+        display: none;
+        animation: fadeIn 0.3s ease;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      .menu-item {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #333;
+        padding: 10px 0;
+      }
+
+      .item-img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-left: 15px;
+      }
+
+      .item-details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        flex: 1;
+      }
+
+      .item-name {
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .item-price {
+        color: #ffb84d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="starCanvas"></canvas>
+
+    <h1>منوی کافه بازینو</h1>
+    <div class="menu-container">
+      <!-- 🍰 شیک‌ها -->
+      <div class="card" onclick="toggleSubmenu(this)">
+        <div class="category-title">🍰 شیک‌ها</div>
+      </div>
+      <div class="submenu">
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">بری</span><span class="item-price">130T</span></div></div>
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">نوتلا</span><span class="item-price">165T</span></div></div>
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">نوستالژی</span><span class="item-price">120T</span></div></div>
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">نسکافه</span><span class="item-price">120T</span></div></div>
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">اورئو</span><span class="item-price">150T</span></div></div>
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">کارامل قهوه</span><span class="item-price">132T</span></div></div>
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">شکلات تیکه‌ای</span><span class="item-price">152T</span></div></div>
+      </div>
+
+      <!-- 🥤 نوشیدنی‌ها -->
+      <div class="card" onclick="toggleSubmenu(this)">
+        <div class="category-title">🥤 نوشیدنی‌ها</div>
+      </div>
+      <div class="submenu">
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">لیموناد</span><span class="item-price">109T</span></div></div>
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">موهیتو</span><span class="item-price">109T</span></div></div>
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">آب هندوانه</span><span class="item-price">85T</span></div></div>
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">توت‌فرنگی انبه</span><span class="item-price">159T</span></div></div>
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">کیوی کاکتوس</span><span class="item-price">159T</span></div></div>
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">انرژی‌زا لیمو زنجبیل</span><span class="item-price">179T</span></div></div>
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">میوه‌های استوایی</span><span class="item-price">169T</span></div></div>
+      </div>
+
+      <!-- 🍛 غذاهای اصلی -->
+      <div class="card" onclick="toggleSubmenu(this)">
+        <div class="category-title">🍛 غذاهای اصلی</div>
+      </div>
+      <div class="submenu">
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">چلو کباب کوبیده</span><span class="item-price">۱۲۰,۰۰۰</span></div></div>
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">قورمه سبزی</span><span class="item-price">۹۵,۰۰۰</span></div></div>
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">زرشک پلو با مرغ</span><span class="item-price">۸۵,۰۰۰</span></div></div>
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">کشک بادمجان</span><span class="item-price">۷۵,۰۰۰</span></div></div>
+        <div class="menu-item"><img src="cake.jpg" class="item-img" /><div class="item-details"><span class="item-name">عدس‌پلو با گوشت</span><span class="item-price">۹۸,۰۰۰</span></div></div>
+      </div>
+    </div>
+
+    <script>
+      function toggleSubmenu(cardElement) {
+        const submenu = cardElement.nextElementSibling;
+        const isOpen = submenu.style.display === "block";
+        document.querySelectorAll(".submenu").forEach((s) => {
+          s.style.display = "none";
+        });
+        if (!isOpen) {
+          submenu.style.display = "block";
+        }
+      }
+
+      // Starry background
+      const canvas = document.getElementById("starCanvas");
+      const ctx = canvas.getContext("2d");
+      let width, height;
+
+      function resizeCanvas() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }
+
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
+
+      const stars = Array(200).fill().map(() => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.5,
+        dx: Math.random() * 0.5,
+      }));
+
+      function animate() {
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.fillStyle = "white";
+        stars.forEach((star) => {
+          star.x += star.dx;
+          if (star.x > width) star.x = 0;
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    </script>
+  </body>
+</html>
